@@ -24,14 +24,14 @@ var margin = {
 // Import Data
 d3.csv("assets/data/data.csv").then(function(healthData) {
 
-// Step 1: Parse Data/Cast as numbers
+// Parse Data/Cast as numbers
     // ==============================
     healthData.forEach(function(data) {
         data.obesity = +data.obesity;
         data.poverty = +data.poverty;
       });
 
-// Step 2: Create scale functions
+// Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
       .domain([20, d3.max(healthData, d => d.obesity)])
@@ -43,12 +43,12 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
       .range([height, 0])
       .nice();
 
-// Step 3: Create axis functions
+// Create axis functions
     // ==============================
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
 
-// Step 4: Append Axes to the chart
+// Append Axes to the chart
     // ==============================
     chartGroup.append("g")
       .attr("transform", `translate(0, ${height})`)
@@ -57,7 +57,7 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     chartGroup.append("g")
       .call(leftAxis);
 
-// Step 5: Create Circles
+// Create Circles with state lables
     // ==============================
     var circlesGroup = chartGroup.selectAll("circle")
     .data(healthData)
@@ -70,23 +70,42 @@ d3.csv("assets/data/data.csv").then(function(healthData) {
     .classed("stateCircle", true)
     .attr("opacity", ".75");
 
-// Step 6: Initialize tool tip
+    //adding the state label to each circle
+    var circleLabels = chartGroup.selectAll(null).data(healthData).enter().append("text");
+
+    circleLabels
+    .attr("x", function(d) {
+        return xLinearScale(d.obesity);
+    })
+    .attr("y", function(d) {
+        return yLinearScale(d.poverty);
+    })
+    .text(function(d) {
+        return d.abbr;
+    })
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "10px")
+    .attr("text-anchor", "middle")
+    .attr("fill", "black");
+ 
+
+// Initialize tool tip
     // ==============================
     var toolTip = d3.tip()
       .attr("class", "tooltip")
       .offset([80, -60])
-      .style("display", "block")
       .html(function(d) {
         return (`${d.abbr}<br>Obesity Rate: ${d.obesity}<br>Poverty Rate: ${d.poverty}`);
       });
   
-// Step 7: Create tooltip in the chart
+// Create tooltip in the chart
     // ==============================
     chartGroup.call(toolTip);
 
-// Step 8: Create event listeners to display and hide the tooltip
+// Create event listeners to display and hide the tooltip
     // ==============================
     circlesGroup.on("click", function(data) {
+        toolTip.style("display", "block")
         toolTip.show(data, this);
     })
       // onmouseout event
