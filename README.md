@@ -4,7 +4,7 @@
 
 This graph is the start of a series of stories with data visualizations that analyze the current health trends shaping people's lives, this series will feature charts, graphs, and interactive elements to help readers understand our findings.
 
-![Poverty vs Obesity Scatter Plot](scatter_heath.png)
+![Poverty vs Obesity Scatter Plot](scatter_health.png)
 
 This first part shows a glimps of data from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
 
@@ -14,7 +14,7 @@ The data set is based on 2014 ACS 1-year estimates from the [US Census Bureau](h
 
 ### Obesity Rate vs Poverty Rate for each U.S. State
 
-[Click here to view the scatter chart and read the initial findings of this comparison.](link) 
+[Click here to view the scatter chart and read the initial findings of this comparison.](https://lrios215.github.io/D3-Challenge/D3_data_journalism/) 
 
 1. This page utilizes html, javascript, and css to create the page.
 
