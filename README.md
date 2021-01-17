@@ -14,7 +14,7 @@ The data set is based on 2014 ACS 1-year estimates from the [US Census Bureau](h
 
 ### Obesity Rate vs Poverty Rate for each U.S. State
 
-[Click here to view the scatter chart and read the initial findings of this comparison.](https://lrios215.github.io/D3-Challenge/D3_data_journalism/) 
+[Click here to view the interactive scatter chart and read the initial findings of this comparison.](https://lrios215.github.io/D3-Challenge/D3_data_journalism/) 
 
 1. This page utilizes html, javascript, and css to create the page.
 
